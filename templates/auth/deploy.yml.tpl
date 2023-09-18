@@ -21,3 +21,6 @@ spec:
       containers:
       - name: auth
         image: ghcr.io/kloudlite/platform/apis/registry-authorizer:v0.0.1
+        env:
+        - name: SECRET_KEY
+          value: {{ .Values.auth.secretKey }}

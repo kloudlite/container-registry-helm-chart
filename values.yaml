@@ -3,44 +3,44 @@
 # Declare variables to be passed into your templates.
 
 # change this to your ingress class name
-ingressClassName: ingress-nginx 
-clusterIssuer: cluster-issuer
 
-# this is host name of your auth server
-#example: registry-auth.dev.kloudlite.io
-authHost: 
+auth:
+  # secret key for auth token generation and parsing
+  secretKey: # example: stringvalue
 
-# this is the host name of your registry
-# example: registry.dev.kloudlite.io
-registryHost: 
+registry:
+  # example: registry.dev.kloudlite.io
+  host:
 
-# this tls hosts will be used by auth and registry ingress
-tls:
-  hosts:
-    - # example: '*.dev.kloudlite.io'
+  ingressClassName: ingress-nginx 
+  clusterIssuer: cluster-issuer
 
-# your s3 setup secrets
-s3:
-  # s3 bucket name
-  bucket:
-  # s3 bucket region
-  region: 
-  # AccessKey and Secret with S3 access
-  accessKey: # stringvalue
-  secretKey: # stringvalue
+  tls:
+    hosts:
+      - # example: '*.dev.kloudlite.io'
+
+  # your s3 setup secrets
+  s3:
+    # s3 bucket name
+    bucket:
+    # s3 bucket region
+    region: 
+    # AccessKey and Secret with S3 access
+    accessKey: # stringvalue
+    secretKey: # stringvalue
 
 # your redis setup secrets and configs
-redis:
-  # redis host, port and password
-  host: # example: redis-master.default.svc.cluster.local
-  port: # example: 6379
-  password: # example: stringvalue
+  redis:
+    # redis host, port and password
+    host: # example: redis-master.default.svc.cluster.local
+    port: # example: 6379
+    password: # example: stringvalue
 
 
-registryResources:
-  limits:
-    cpu: 200m
-    memory: 200Mi
-  requests:
-    cpu: 100m
-    memory: 100Mi
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi

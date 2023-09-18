@@ -21,30 +21,29 @@ spec:
       containers:
       - name: registry-container
         image: registry:2
-        resources: {{ .Values.registryResources | toYaml | nindent 8 }}
+        resources: {{ .Values.registry.resources | toYaml | nindent 8 }}
         env:
           {{ if .Values.redis }}
           - name: REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR
             value: redis
           - name: REGISTRY_REDIS_ADDR
-            value: {{ .Values.redis.host }}:{{ .Values.redis.port }}
+            value: {{ .Values.registry.redis.host }}:{{ .Values.registry.redis.port }}
           - name: REGISTRY_REDIS_PASSWORD
-            value: {{ .Values.redis.password }}
+            value: {{ .Values.registry.redis.password }}
           {{end}}
 
           - name: REGISTRY_STORAGE
             value: s3
 
           - name: REGISTRY_STORAGE_S3_REGION
-            value: {{ .Values.s3.region }}
+            value: {{ .Values.registry.s3.region }}
 
           - name: REGISTRY_STORAGE_S3_BUCKET
-            value: {{ .Values.s3.bucket }}
+            value: {{ .Values.registry.s3.bucket }}
 
 
           - name: REGISTRY_STORAGE_S3_ACCESSKEY
-            value: {{ .Values.s3.accessKey }}
+            value: {{ .Values.registry.s3.accessKey }}
 
           - name: REGISTRY_STORAGE_S3_SECRETKEY
-            value: {{ .Values.s3.secretKey }}
-
+            value: {{ .Values.registry.s3.secretKey }}

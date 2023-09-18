@@ -8,7 +8,7 @@ metadata:
   namespace: {{ $namespace }}
 spec:
   ports:
-  - name: "80"
+  - name: "auth"
     port: 80
     protocol: TCP
     targetPort: 3000
