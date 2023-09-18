@@ -18,4 +18,4 @@ spec:
     protocol: TCP
     targetPort: 4000
   selector:
-    name: {{ $name }}
+    app: {{ $name }}

@@ -1,6 +1,6 @@
 {{- $name := print (include "registry-helmchart.fullname" .) "-registry" -}}
 {{- $authName := print (include "registry-helmchart.fullname" .) "-auth" -}}
-{{- $namespace := .Release.namespace -}}
+{{- $namespace := .Release.Namespace -}}
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -13,14 +13,16 @@ metadata:
     nginx.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: 200m
     nginx.ingress.kubernetes.io/proxy-buffer-size: 10k
-    nginx.ingress.kubernetes.io/auth-url: http://{{ $authName }}.{{ $namespace }}.svc.cluster.local
+    nginx.ingress.kubernetes.io/auth-url: http://{{ $authName }}.{{ $namespace }}.svc.cluster.local/?path=$request_uri&method=$request_method
 
   name: {{ $name }}
-  namespace: {{ $namespace }}
 spec:
+  {{ if .Values.registry.tls }}
+  tls: {{ .Values.registry.tls | toYaml | nindent 4}}
+  {{ end }}
   ingressClassName: {{ .Values.registry.ingressClassName }}
   rules:
-  - host: {{ .Values.registry.host }} }}}
+  - host: {{ .Values.registry.host }}
     http:
       paths:
       - backend:
@@ -31,6 +33,3 @@ spec:
         path: /(.*)
         pathType: Prefix
 
-  {{ if .Values.registry.tls }}
-  tls: {{ .Values.registry.tls | toYaml | nindent 4}}
-  {{ end }}

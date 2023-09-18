@@ -16,8 +16,8 @@ registry:
   clusterIssuer: cluster-issuer
 
   tls:
-    hosts:
-      - # example: '*.dev.kloudlite.io'
+  - hosts:
+    - # example: '*.dev.kloudlite.io'
 
   # your s3 setup secrets
   s3:

@@ -21,7 +21,7 @@ spec:
       containers:
       - name: registry-container
         image: registry:2
-        resources: {{ .Values.registry.resources | toYaml | nindent 8 }}
+        resources: {{ .Values.registry.resources | toYaml | nindent 10 }}
         env:
           {{ if .Values.redis }}
           - name: REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR
