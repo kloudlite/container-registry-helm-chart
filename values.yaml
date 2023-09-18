@@ -4,6 +4,7 @@
 
 # change this to your ingress class name
 ingressClassName: ingress-nginx 
+clusterIssuer: cluster-issuer
 
 # this is host name of your auth server
 #example: registry-auth.dev.kloudlite.io
