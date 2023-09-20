@@ -11,9 +11,11 @@ auth:
 registry:
   # example: registry.dev.kloudlite.io
   host:
+  eventPushUrl: # example: http://vision.wg-platform.svc.cluster.local:4000/event
 
   ingressClassName: ingress-nginx 
   clusterIssuer: cluster-issuer
+  httpsecret: # this-is-a-secret
 
   tls:
   - hosts:

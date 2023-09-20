@@ -1,4 +1,5 @@
 {{- $name := print (include "registry-helmchart.fullname" .) "-registry" -}}
+{{- $configName := print (include "registry-helmchart.fullname" .) "-config" -}}
 {{- $namespace := .Release.namespace -}}
 
 apiVersion: apps/v1
@@ -23,7 +24,7 @@ spec:
         image: registry:2
         resources: {{ .Values.registry.resources | toYaml | nindent 10 }}
         env:
-          {{ if .Values.redis }}
+          {{ if .Values.registry.redis }}
           - name: REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR
             value: redis
           - name: REGISTRY_REDIS_ADDR
@@ -47,3 +48,12 @@ spec:
 
           - name: REGISTRY_STORAGE_S3_SECRETKEY
             value: {{ .Values.registry.s3.secretKey }}
+
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/docker/registry
+
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ $configName }}
