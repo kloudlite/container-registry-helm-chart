@@ -11,9 +11,9 @@ metadata:
     nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: 200m
-    nginx.ingress.kubernetes.io/proxy-buffer-size: 10k
-    nginx.ingress.kubernetes.io/auth-url: http://{{ $authName }}.{{ $namespace }}.svc.cluster.local/?path=$request_uri&method=$request_method
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.registry.proxyBodySize }}
+    nginx.ingress.kubernetes.io/proxy-buffer-size: {{ .Values.registry.proxyBufferSize }}
+    nginx.ingress.kubernetes.io/auth-url: {{ .Values.registry.authUrl }}?path=$request_uri&method=$request_method
 
   name: {{ $name }}
 spec:
@@ -32,4 +32,3 @@ spec:
               number: 80
         path: /(.*)
         pathType: Prefix
-

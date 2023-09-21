@@ -16,6 +16,8 @@ registry:
   ingressClassName: ingress-nginx 
   clusterIssuer: cluster-issuer
   httpsecret: # this-is-a-secret
+  authUrl: # <scheme>://<domain>:<port>/auth
+  proxyBodySize: 2000m
 
   tls:
   - hosts:

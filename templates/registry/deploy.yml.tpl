@@ -1,12 +1,10 @@
 {{- $name := print (include "registry-helmchart.fullname" .) "-registry" -}}
 {{- $configName := print (include "registry-helmchart.fullname" .) "-config" -}}
-{{- $namespace := .Release.namespace -}}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $name }}
-  namespace: {{ $namespace }}
   labels:
     app: {{ $name }}
 spec:
