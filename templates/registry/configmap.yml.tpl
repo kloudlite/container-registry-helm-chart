@@ -8,6 +8,8 @@ data:
       fields:
         service: registry
     storage:
+      delete:
+        enabled: true
       cache:
         blobdescriptor: inmemory
       filesystem:
