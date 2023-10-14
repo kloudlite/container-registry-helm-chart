@@ -26,7 +26,7 @@
     ```
 - create vpn device on platform cluster
 
-- install current chart [create .values.yaml file with credentials and configurations]
+- install current chart [create .values.yaml file with credentials and configurations] [template](./values.yaml)
     ```sh
     helm upgrade --install registry -f .values.yaml --namespace kl-core .
     ```
