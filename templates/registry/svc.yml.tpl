@@ -1,4 +1,4 @@
-{{- $name := print (include "registry-helmchart.fullname" .) "-registry" -}}
+{{- $name := print (include "registry-helmchart.fullname" .) -}}
 {{- $namespace := .Release.namespace -}}
 
 apiVersion: v1

@@ -2,23 +2,18 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# change this to your ingress class name
-
-auth:
-  # secret key for auth token generation and parsing
-  secretKey: # example: stringvalue
-
 registry:
   # example: registry.dev.kloudlite.io
   host:
   eventPushUrl: # example: http://vision.wg-platform.svc.cluster.local:4000/event
 
   ingressClassName: ingress-nginx 
-  clusterIssuer: cluster-issuer
-  httpsecret: # this-is-a-secret
+  clusterIssuer: cluster-issuer # only if tls is enabled
   authUrl: # <scheme>://<domain>:<port>/auth
   proxyBodySize: 2000m
+  proxyBufferSize: 1000m
 
+  # only if tls is enabled
   tls:
   - hosts:
     - # example: '*.dev.kloudlite.io'
@@ -27,6 +22,8 @@ registry:
   s3:
     # s3 bucket name
     bucket:
+    # s3 bucket region endpoint
+    regionEndpoint: 
     # s3 bucket region
     region: 
     # AccessKey and Secret with S3 access
