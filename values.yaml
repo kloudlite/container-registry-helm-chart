@@ -2,24 +2,26 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+wgServerConfig: |+
+    ServerConfig here...
+
 registry:
   # example: registry.dev.kloudlite.io
   host:
-  eventPushUrl: # example: http://vision.wg-platform.svc.cluster.local:4000/event
-
   ingressClassName: ingress-nginx 
   clusterIssuer: cluster-issuer # only if tls is enabled
-  authUrl: # <scheme>://<domain>:<port>/auth
   proxyBodySize: 2000m
   proxyBufferSize: 1000m
 
   # only if tls is enabled
+  tlsEnabled: false
   tls:
   - hosts:
     - # example: '*.dev.kloudlite.io'
 
   # your s3 setup secrets
   s3:
+    enabled: false
     # s3 bucket name
     bucket:
     # s3 bucket region endpoint
@@ -32,6 +34,7 @@ registry:
 
 # your redis setup secrets and configs
   redis:
+    enabled: false
     # redis host, port and password
     host: # example: redis-master.default.svc.cluster.local
     port: # example: 6379

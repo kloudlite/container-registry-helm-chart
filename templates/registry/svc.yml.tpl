@@ -1,10 +1,10 @@
-{{- $name := print (include "registry-helmchart.fullname" .) -}}
-{{- $namespace := .Release.namespace -}}
+{{- $name := .Release.Name -}}
+{{- $namespace := .Release.Namespace -}}
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $name }}
+  name: svc-{{ $name }}
   namespace: {{ $namespace }}
 spec:
   ports:

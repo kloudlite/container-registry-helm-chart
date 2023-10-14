@@ -1,5 +1,5 @@
-{{- $name := print (include "registry-helmchart.fullname" .) -}}
-{{- $configName := print (include "registry-helmchart.fullname" .) -}}
+{{- $name := .Release.Name -}}
+{{- $configName := .Release.Name -}}
 
 apiVersion: apps/v1
 kind: Deployment

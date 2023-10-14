@@ -1,5 +1,5 @@
-{{- $configName := print (include "registry-helmchart.fullname" .)  -}}
-{{- $name := print (include "registry-helmchart.fullname" .) -}}
+{{- $configName := .Release.Name  -}}
+{{- $name := .Release.Name -}}
 
 apiVersion: batch/v1
 kind: CronJob

@@ -1,10 +1,11 @@
-{{- $name := print (include "registry-helmchart.fullname" .) -}}
+{{- $name := .Release.Name -}}
+{{- $namespace := .Release.Namespace -}}
 
 apiVersion: v1
 data:
   config.yml: |-
     version: 0.1
-    {{ if .Values.registry.redis }}
+    {{ if .Values.registry.redis.enabled }}
     redis:
       addr: {{ .Values.registry.redis.host }}:{{ .Values.registry.redis.port }}
       password: {{ .Values.registry.redis.password }}
@@ -16,7 +17,7 @@ data:
       delete:
         enabled: true
       cache:
-        {{ if .Values.registry.redis }}
+        {{ if .Values.registry.redis.enabled }}
         blobdescriptor: redis
         {{else}}
         blobdescriptor: inmemory
@@ -45,6 +46,20 @@ data:
         enabled: true
         interval: 10s
         threshold: 3
+
+    notifications:
+      events:
+        includereferences: true
+      endpoints:
+        - name: alistener
+          disabled: false
+          url: http://svc-{{$name}}-platform-registry-api.{{$namespace}}.svc.cluster.local/events
+          timeout: 1s
+          threshold: 10
+          backoff: 1s
+          ignoredmediatypes:
+            - application/octet-stream
+
 kind: ConfigMap
 metadata:
   name: {{ $name }}
