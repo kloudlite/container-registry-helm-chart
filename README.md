@@ -30,3 +30,7 @@
     ```sh
     helm upgrade --install registry -f .values.yaml --namespace kl-core .
     ```
+- install metrics server [docs.aws.amazon.com/eks/latest/userguide/metrics-server.html](https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html)
+    ```sh
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    ```
