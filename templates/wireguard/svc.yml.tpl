@@ -12,6 +12,10 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 4000
+  - name: registry-9092
+    port: 9092
+    protocol: TCP
+    targetPort: 9092
   selector:
     app: {{ .Release.Name }}-wg
   type: ClusterIP
