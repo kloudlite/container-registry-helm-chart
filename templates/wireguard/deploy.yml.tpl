@@ -24,17 +24,6 @@ spec:
     spec:
       serviceAccountName: {{ .Release.Name }}
       containers:
-
-      - name: build-agent
-        image: ghcr.io/kloudlite/platform/apis/build-agent:v1.0.5-nightly
-        {{/* resources: {{ .Values.registry.resources | toYaml | nindent 10 }} */}}
-        env:
-        - name: KAFKA_BROKERS
-          value: redpanda.kl-core.svc.cluster.local 
-        - name: KAFKA_CONSUMER_GROUP
-          value: kl-container-registry
-        - name: KAFKA_BUILD_TOPICS
-          value: kl-container-registry
       - env:
         - name: CONFIG_FILE
           value: /proxy-config/config.json
