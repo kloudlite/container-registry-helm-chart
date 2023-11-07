@@ -4,14 +4,16 @@
 
 wgServerConfig: |+
     ServerConfig here...
+urProxy:
+  enabled: false
 
 registry:
   # example: registry.dev.kloudlite.io
   host:
   ingressClassName: ingress-nginx 
   clusterIssuer: cluster-issuer # only if tls is enabled
-  proxyBodySize: 2000m
-  proxyBufferSize: 1000m
+
+  secret: # example: registry-secret
 
   # only if tls is enabled
   tlsEnabled: false
@@ -21,7 +23,7 @@ registry:
 
   # your s3 setup secrets
   s3:
-    enabled: false
+    enabled: true
     # s3 bucket name
     bucket:
     # s3 bucket region endpoint

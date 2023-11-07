@@ -20,8 +20,13 @@ spec:
             - -c
             -  registry garbage-collect /etc/docker/registry/config.yml --delete-untagged=true
             imagePullPolicy: IfNotPresent
-            resources: {{ .Values.registry.resources | toYaml | nindent 14 }}
-
+            resources:
+              limits:
+                cpu: 100m
+                memory: 100Mi
+              requests:
+                cpu: 100m
+                memory: 100Mi
             volumeMounts:
             - name: config-volume
               mountPath: /etc/docker/registry

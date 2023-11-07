@@ -21,6 +21,10 @@ spec:
       - name: registry-container
         image: registry:2
         resources: {{ .Values.registry.resources | toYaml | nindent 10 }}
+        ports:
+        - containerPort: 5000
+          name: http
+          protocol: TCP
 
         volumeMounts:
         - name: config-volume

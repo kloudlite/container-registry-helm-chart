@@ -23,7 +23,7 @@ data:
         blobdescriptor: inmemory
         {{end}}
 
-      {{if .Values.registry.s3 }}
+      {{if .Values.registry.s3.enabled }}
       s3:
         accesskey: {{ .Values.registry.s3.accessKey }}
         secretkey: {{ .Values.registry.s3.secretKey }}
@@ -39,6 +39,7 @@ data:
 
     http:
       addr: :5000
+      secret: {{ .Values.registry.secret }}
       headers:
         X-Content-Type-Options: [nosniff]
     health:

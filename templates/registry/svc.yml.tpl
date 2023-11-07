@@ -11,6 +11,6 @@ spec:
   - name: "registry"
     port: 80
     protocol: TCP
-    targetPort: 5000
+    targetPort: http
   selector:
     app: {{ $name }}
