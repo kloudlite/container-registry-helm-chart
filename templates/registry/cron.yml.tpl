@@ -18,7 +18,8 @@ spec:
             command:
             - /bin/sh
             - -c
-            -  registry garbage-collect /etc/docker/registry/config.yml --delete-untagged=true
+            -  registry garbage-collect --dry-run /etc/docker/registry/config.yml 
+            # --delete-untagged=true
             imagePullPolicy: IfNotPresent
             resources:
               limits:

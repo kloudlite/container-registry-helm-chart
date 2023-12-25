@@ -54,7 +54,7 @@ data:
       endpoints:
         - name: alistener
           disabled: false
-          url: http://svc-{{$name}}-platform-registry-api.{{$namespace}}.svc.cluster.local/events
+          url: http://container-registry-api.kl-core.svc.cluster.local:4000/events
           timeout: 1s
           threshold: 10
           backoff: 1s
